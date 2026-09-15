@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Свадьба 15.05.2027</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&family=Prata&display=swap">
+<style>
+  :root {
+    --cream:      #FFFBF4;
+    --surface:    #FFFFFF;
+    --surface-2:  #FFF3E8;
+    --ink:        #3B3327;
+    --ink-soft:   #7C7160;
+    --ink-faint:  #ADA292;
+    --line:       #F0E2D2;
+    --line-2:     #F7EDE2;
+
+    --peach:      #FFC9A3;
+    --peach-soft: #FFEDDF;
+    --peach-deep: #E8804A;
+    --lime:       #B9DC79;
+    --lime-soft:  #EDF6DC;
+    --lime-deep:  #5E8C24;
+    --yellow:     #FFD84A;
+    --yellow-soft:#FFF3CB;
+    --yellow-deep:#A6810E;
+
+    --shadow-sm:  0 2px 6px rgba(94, 66, 41, .06);
+    --shadow-md:  0 10px 28px -18px rgba(94, 66, 41, .45);
+
+    --display: "Prata", Georgia, serif;
+    --body: "Manrope", "Segoe UI", system-ui, sans-serif;
+
+    --r-lg: 22px;
+    --r-md: 14px;
+    --r-sm: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --cream:      #211C16;
+      --surface:    #2A231C;
+      --surface-2:  #332A21;
+      --ink:        #FAF2E7;
+      --ink-soft:   #BCAE9B;
+      --ink-faint:  #8B7F6E;
+      --line:       #3E3428;
+      --line-2:     #352C22;
+
+      --peach:      #E8A277;
+      --peach-soft: #3A2B20;
+      --peach-deep: #F0A173;
+      --lime:       #A8CC6A;
+      --lime-soft:  #2B3320;
+      --lime-deep:  #B6D97C;
+      --yellow:     #EFC749;
+      --yellow-soft:#38301B;
+      --yellow-deep:#F0CE6A;
+
+      --shadow-sm:  0 2px 6px rgba(0, 0, 0, .35);
+      --shadow-md:  0 10px 28px -18px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --cream:      #211C16;
+    --surface:    #2A231C;
+    --surface-2:  #332A21;
+    --ink:        #FAF2E7;
+    --ink-soft:   #BCAE9B;
+    --ink-faint:  #8B7F6E;
+    --line:       #3E3428;
+    --line-2:     #352C22;
+
+    --peach:      #E8A277;
+    --peach-soft: #3A2B20;
+    --peach-deep: #F0A173;
+    --lime:       #A8CC6A;
+    --lime-soft:  #2B3320;
+    --lime-deep:  #B6D97C;
+    --yellow:     #EFC749;
+    --yellow-soft:#38301B;
+    --yellow-deep:#F0CE6A;
+
+    --shadow-sm:  0 2px 6px rgba(0, 0, 0, .35);
+    --shadow-md:  0 10px 28px -18px rgba(0, 0, 0, .9);
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    position: relative;
+    overflow-x: clip;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 0 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    text-indent: .24em;
+    color: var(--peach-deep);
+  }
+
+  /* ——— цветы одной линией, рассыпанные по фону ——— */
+  .flora-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .garden {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .garden svg {
+    position: absolute;
+    height: auto;
+    color: var(--peach-deep);
+    opacity: .42;
+  }
+  .garden .lime { color: var(--lime-deep); }
+  .garden .gold { color: var(--yellow-deep); }
+  @media (max-width: 900px) { .garden svg { opacity: .3; } }
+
+  /* ——— вход по кодовому слову ——— */
+  .gate {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .gate-card {
+    width: min(380px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+  .gate-card svg { width: 96px; height: auto; color: var(--peach-deep); opacity: .55; }
+  .gate-card h1 { font-family: var(--display); font-weight: 400; font-size: 26px; margin: 0; }
+  .gate-card p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+  .gate-form { display: flex; gap: 8px; width: 100%; margin-top: 4px; }
+  .gate-error { font-size: 13px; color: var(--peach-deep); min-height: 20px; }
+
+  /* ——— шапка ——— */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding-block: 46px 40px;
+    padding-inline: 20px;
+    margin-inline: -20px;
+    border-radius: 0 0 var(--r-lg) var(--r-lg);
+    background:
+      radial-gradient(70% 58% at 12% 6%, var(--peach-soft), transparent 70%),
+      radial-gradient(62% 55% at 92% 16%, var(--yellow-soft), transparent 72%),
+      radial-gradient(72% 60% at 50% 108%, var(--lime-soft), transparent 74%),
+      var(--surface);
+    overflow: hidden;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(24px, 5.4vw, 34px);
+    line-height: 1.2;
+    letter-spacing: .01em;
+    color: var(--ink);
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dashed transparent;
+    padding: 2px 6px;
+    width: 100%;
+    max-width: 18ch;
+  }
+  .hero-title:hover { border-bottom-color: var(--peach); }
+  .hero-title:focus { outline: none; border-bottom-color: var(--peach-deep); }
+
+  .date {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 7px 18px;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    font-variant-numeric: tabular-nums;
+    box-shadow: var(--shadow-sm);
+  }
+  .date::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 99px;
+    background: var(--peach-deep);
+    flex: none;
+  }
+
+  .sun {
+    margin-top: 6px;
+    width: clamp(190px, 52vw, 248px);
+    aspect-ratio: 1;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 44%, var(--yellow-soft) 0%, var(--peach-soft) 58%, transparent 73%);
+    position: relative;
+  }
+  .sun::before {
+    content: "";
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    border: 1px dashed var(--lime);
+    opacity: .75;
+  }
+  .sun b {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(62px, 17vw, 100px);
+    line-height: 1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .count-word {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-indent: .22em;
+    color: var(--ink-soft);
+    margin-top: -4px;
+  }
+  .date-edit { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+  .linkish {
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    background: none;
+    border: 0;
+    padding: 2px 0;
+    color: var(--ink-faint);
+    border-bottom: 1.5px solid var(--line);
+    cursor: pointer;
+  }
+  .linkish:hover { color: var(--peach-deep); border-bottom-color: var(--peach); }
+  input[type="date"] {
+    font: inherit;
+    font-size: 13.5px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 6px 10px;
+  }
+
+  /* ——— потрачено ——— */
+  .spend {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+    padding: 24px 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .spend-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; }
+  .spend-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    text-indent: .2em;
+    color: var(--ink-soft);
+  }
+  .spend-value {
+    font-family: var(--display);
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    width: 100%;
+  }
+  .track {
+    height: 12px;
+    border-radius: 99px;
+    background: var(--peach-soft);
+    overflow: hidden;
+  }
+  .track-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--lime), var(--yellow));
+    transition: width .6s cubic-bezier(.2,.7,.3,1);
+  }
+  .track-note { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+  .track-note b { color: var(--lime-deep); font-weight: 700; }
+
+  /* ——— список ——— */
+  .list-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 6px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0;
+    color: var(--ink);
+  }
+  .items { display: flex; flex-direction: column; gap: 6px; }
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .item:hover { border-color: var(--peach); }
+  .item.open { border-color: var(--peach); box-shadow: var(--shadow-sm); }
+  .item.done { background: linear-gradient(90deg, var(--lime-soft), var(--surface) 42%); }
+  .item-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2rem minmax(0,1fr) auto auto;
+    align-items: center;
+    gap: 6px 14px;
+    background: none;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    padding: 15px 18px;
+    cursor: pointer;
+  }
+  .item-head:focus-visible { outline: 2px solid var(--peach-deep); outline-offset: -2px; }
+  .num {
+    font-family: var(--display);
+    font-size: 19px;
+    color: var(--peach-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .item-name { font-size: 16.5px; font-weight: 500; }
+  .item-meta { display: flex; align-items: center; gap: 14px; }
+  .chip {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 99px;
+    white-space: nowrap;
+    background: var(--yellow-soft);
+    color: var(--yellow-deep);
+  }
+  .chip.paid { background: var(--lime-soft); color: var(--lime-deep); }
+  .item-sum {
+    font-family: var(--display);
+    font-size: 21px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .item-sum.zero { font-family: var(--body); font-size: 13px; color: var(--ink-faint); }
+  @media (max-width: 560px) {
+    .item-head { grid-template-columns: 1.6rem minmax(0,1fr) auto; padding: 14px; }
+    .item-meta { grid-column: 2 / -1; justify-content: space-between; }
+  }
+
+  .panel { padding: 4px 18px 22px 18px; display: flex; flex-direction: column; gap: 18px; }
+  @media (max-width: 560px) { .panel { padding-inline: 14px; } }
+
+  .subs { display: flex; flex-direction: column; gap: 6px; }
+  .subs-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .item.sub { background: var(--surface-2); border-color: transparent; }
+  .item.sub.done { background: var(--lime-soft); }
+  .item.sub .item-head { padding: 11px 14px; grid-template-columns: 1.2rem minmax(0,1fr) auto auto; }
+  .item.sub .num { font-size: 15px; color: var(--ink-faint); }
+  .item.sub .item-name { font-size: 15px; font-weight: 500; }
+  .item.sub .item-sum { font-size: 18px; }
+  .item.sub .panel { padding: 0 14px 16px; gap: 14px; }
+  @media (max-width: 560px) { .item.sub .item-head { grid-template-columns: 1rem minmax(0,1fr) auto; } }
+
+  /* ——— варианты ——— */
+  .options { display: grid; grid-template-columns: repeat(auto-fill, minmax(172px, 1fr)); gap: 14px; }
+  .option {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option.bought { border-color: var(--lime); background: linear-gradient(180deg, var(--lime-soft), var(--surface) 55%); }
+  .shot {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+    background: var(--peach-soft);
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shot .no-photo {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--peach-deep);
+    opacity: .75;
+  }
+  .badge {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    background: var(--lime-deep);
+    color: var(--cream);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+  }
+  .option .name { font-size: 14px; line-height: 1.4; padding-inline: 4px; }
+  .option .price {
+    font-family: var(--display);
+    font-size: 22px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    padding-inline: 4px;
+  }
+  .option .price.none { font-family: var(--body); font-size: 12.5px; color: var(--ink-faint); }
+  .option a.shop {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--peach-deep);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--peach);
+    align-self: flex-start;
+    margin-inline: 4px;
+    word-break: break-all;
+  }
+  .option a.shop:hover { border-bottom-color: var(--peach-deep); }
+  .option .acts { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: auto; padding: 2px 4px 0; }
+  .mark {
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: 0;
+    padding: 3px 0;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .mark:hover { color: var(--lime-deep); }
+  .mark .tick {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 99px;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: transparent;
+    flex: none;
+  }
+  .option.bought .mark { color: var(--lime-deep); }
+  .option.bought .mark .tick { border-color: var(--lime-deep); background: var(--lime-deep); color: var(--surface); }
+  .kill {
+    font: inherit;
+    font-size: 12px;
+    background: none;
+    border: 1.5px solid transparent;
+    border-radius: 99px;
+    color: var(--ink-faint);
+    padding: 3px 9px;
+    cursor: pointer;
+  }
+  .kill:hover, .kill:focus-visible { border-color: var(--line); color: var(--ink-soft); }
+  .kill.armed { color: var(--peach-deep); border-color: var(--peach); }
+  .card-tools { display: flex; align-items: center; gap: 4px; }
+
+  .option.editing { border-color: var(--peach-deep); }
+  .edit-fields { display: grid; gap: 8px; padding-inline: 4px; }
+  .edit-fields input.box { font-size: 13.5px; padding: 7px 9px; }
+  .edit-acts { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 4px 0; }
+  button.mini {
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 99px;
+    padding: 6px 15px;
+    cursor: pointer;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+  }
+  button.mini:hover { border-color: var(--peach-deep); color: var(--peach-deep); }
+  button.mini.save { background: var(--lime-deep); border-color: var(--lime-deep); color: var(--cream); }
+  button.mini.save:hover { filter: brightness(1.06); color: var(--cream); }
+  button.mini:disabled { opacity: .5; cursor: default; }
+
+  .rename-row { display: flex; flex-direction: column; gap: 4px; max-width: 420px; }
+  .rename-row > span {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ——— формы ——— */
+  .add-option {
+    background: var(--surface-2);
+    border-radius: var(--r-md);
+    padding: 16px;
+    display: grid;
+    gap: 12px;
+  }
+  .add-grid { display: grid; grid-template-columns: 1fr 1fr 8rem; gap: 10px; }
+  @media (max-width: 620px) { .add-grid { grid-template-columns: 1fr; } }
+  label.field { display: flex; flex-direction: column; gap: 5px; }
+  label.field > span {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  input.box {
+    font: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 9px 12px;
+    width: 100%;
+    min-width: 0;
+  }
+  input.box::placeholder { color: var(--ink-faint); }
+  input.box:focus { outline: none; border-color: var(--peach-deep); box-shadow: 0 0 0 3px var(--peach-soft); }
+  .add-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; }
+  .photo-pick { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink-soft); min-width: 0; }
+  .photo-pick label {
+    font-size: 12.5px;
+    font-weight: 700;
+    border: 1.5px solid var(--line);
+    border-radius: 99px;
+    padding: 7px 16px;
+    cursor: pointer;
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .photo-pick label:hover { border-color: var(--peach-deep); color: var(--peach-deep); }
+  .photo-pick input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .photo-pick .fname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  button.primary {
+    font: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border: 0;
+    border-radius: 99px;
+    background: var(--peach-deep);
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  button.primary:hover { filter: brightness(1.05); }
+  button.primary:disabled { opacity: .5; cursor: default; }
+  button.primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  button.ghost {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 99px;
+    color: var(--ink-soft);
+    padding: 9px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  button.ghost:hover { border-color: var(--lime); color: var(--lime-deep); }
+
+  .new-item { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .new-item input.box { flex: 1 1 220px; }
+  .hint { font-size: 13px; color: var(--ink-faint); margin: 0; }
+
+  footer.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--ink-faint); flex: none; }
+  .dot.live { background: var(--lime); }
+  .dot.off { background: var(--peach-deep); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<svg class="flora-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- пион: пять лепестков одной непрерывной линией -->
+    <path id="fl-a" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          d="M92 298 C 88 266 96 244 110 226 C 118 214 116 208 110 205
+             C 126 194 152 184 172 188 C 182 190 174 200 158 204
+             C 142 208 118 210 110 205 C 103 200 100 190 100 178
+             C 88 142 74 137 44 158 C 54 193 68 198 100 178
+             C 109 135 99 117 60 104 C 49 143 59 161 100 178
+             C 131 137 134 110 112 68 C 82 104 79 131 100 178
+             C 147 166 164 147 166 102 C 122 111 105 130 100 178
+             C 134 199 153 196 176 166 C 145 144 126 147 100 178"/>
+
+    <!-- тюльпан: три широких петли и завиток стебля -->
+    <path id="fl-b" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          d="M116 300 C 120 270 106 250 102 232
+             C 116 226 140 222 152 230 C 158 234 150 240 136 240
+             C 122 240 106 238 102 232 C 98 224 100 208 100 196
+             C 97 155 84 143 46 150 C 46 189 59 201 100 196
+             C 130 149 132 118 106 76 C 76 117 74 147 100 196
+             C 142 201 158 190 164 152 C 126 144 110 155 100 196"/>
+
+    <!-- веточка: три листа-петли на волнистой линии -->
+    <path id="fl-c" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          d="M100 300 C 104 268 92 246 96 222
+             C 110 214 134 206 148 212 C 154 216 146 222 132 222
+             C 116 222 100 226 96 222 C 92 210 96 196 94 182
+             C 80 174 60 160 56 144 C 54 136 64 138 74 148
+             C 84 158 94 170 94 182 C 92 168 96 148 104 134
+             C 118 124 142 116 152 122 C 158 126 148 132 136 132
+             C 120 132 110 138 104 134 C 98 126 100 112 102 96"/>
+  </defs>
+</svg>
+
+<div class="gate" id="gate" hidden>
+  <div class="gate-card">
+    <svg viewBox="0 0 220 310" aria-hidden="true"><use href="#fl-a"/></svg>
+    <h1>Наша свадьба</h1>
+    <p>Страница для двоих. Введите кодовое слово, чтобы открыть список подготовки.</p>
+    <form class="gate-form" id="gate-form" autocomplete="off">
+      <input class="box" id="gate-input" type="password" placeholder="кодовое слово" aria-label="Кодовое слово">
+      <button type="submit" class="primary">Войти</button>
+    </form>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
+
+<div class="garden" aria-hidden="true">
+  <svg style="left:-2%;top:2%;width:158px;transform:rotate(-13deg)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg class="lime" style="right:1%;top:5%;width:112px;transform:rotate(24deg)" viewBox="0 0 220 310"><use href="#fl-c"/></svg>
+  <svg class="gold" style="left:6%;top:12%;width:96px;transform:rotate(38deg) scaleX(-1)" viewBox="0 0 220 310"><use href="#fl-b"/></svg>
+  <svg style="right:-3%;top:16%;width:164px;transform:rotate(-27deg)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg class="lime" style="left:1%;top:25%;width:124px;transform:rotate(9deg)" viewBox="0 0 220 310"><use href="#fl-b"/></svg>
+  <svg class="gold" style="right:6%;top:30%;width:100px;transform:rotate(-42deg)" viewBox="0 0 220 310"><use href="#fl-c"/></svg>
+  <svg style="left:-1%;top:38%;width:146px;transform:rotate(21deg) scaleX(-1)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg class="lime" style="right:2%;top:44%;width:132px;transform:rotate(-9deg)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg class="gold" style="left:5%;top:52%;width:104px;transform:rotate(-33deg)" viewBox="0 0 220 310"><use href="#fl-b"/></svg>
+  <svg style="right:-2%;top:58%;width:152px;transform:rotate(17deg)" viewBox="0 0 220 310"><use href="#fl-c"/></svg>
+  <svg class="lime" style="left:2%;top:66%;width:118px;transform:rotate(41deg)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg class="gold" style="right:4%;top:72%;width:98px;transform:rotate(-16deg) scaleX(-1)" viewBox="0 0 220 310"><use href="#fl-b"/></svg>
+  <svg style="left:0%;top:80%;width:140px;transform:rotate(12deg)" viewBox="0 0 220 310"><use href="#fl-b"/></svg>
+  <svg class="lime" style="right:1%;top:86%;width:116px;transform:rotate(-31deg)" viewBox="0 0 220 310"><use href="#fl-c"/></svg>
+  <svg class="gold" style="left:7%;top:93%;width:102px;transform:rotate(27deg)" viewBox="0 0 220 310"><use href="#fl-a"/></svg>
+  <svg style="right:8%;top:96%;width:124px;transform:rotate(-8deg) scaleX(-1)" viewBox="0 0 220 310"><use href="#fl-c"/></svg>
+</div>
+
+<div class="wrap" id="page" hidden>
+  <header class="hero">
+    <p class="eyebrow">план подготовки</p>
+    <input id="hero-title" class="hero-title" value="Наша свадьба" aria-label="Заголовок" maxlength="40">
+    <div class="date" id="date-text">15.05.2027</div>
+    <div class="sun"><b id="days">—</b></div>
+    <div class="count-word" id="days-word">дней осталось</div>
+    <div class="date-edit">
+      <button type="button" class="linkish" id="date-toggle">изменить дату</button>
+      <input type="date" id="date-input" value="2027-05-15" hidden aria-label="Дата свадьбы">
+    </div>
+  </header>
+
+  <section class="spend">
+    <div class="spend-top">
+      <span class="spend-label">Потрачено на свадьбу</span>
+    </div>
+    <span class="spend-value" id="spent">0 ₽</span>
+    <div class="track"><div class="track-fill" id="bar"></div></div>
+    <p class="track-note" id="progress-note">Закрыто <b>0</b> из 0 пунктов</p>
+  </section>
+
+  <section>
+    <div class="list-head">
+      <h2>Список подготовки</h2>
+      <button type="button" class="linkish" id="toggle-all">развернуть всё</button>
+    </div>
+    <div class="items" id="items"></div>
+    <p class="hint" id="list-hint" hidden>Список пока пуст — добавьте первый пункт.</p>
+    <form class="new-item" id="new-item" autocomplete="off">
+      <input class="box" id="new-item-title" placeholder="Новый пункт, например: свадебный кортеж" maxlength="60" aria-label="Название пункта">
+      <button type="submit" class="ghost">+ пункт</button>
+    </form>
+  </section>
+
+  <footer class="status-bar">
+    <span class="dot" id="dot"></span>
+    <span id="status">Подключаемся к базе…</span>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+/* ============================================================
+   НАСТРОЙКИ — здесь три строки, которые нужно заполнить.
+   Supabase → Settings → API:
+     Project URL      → SUPABASE_URL
+     anon public key  → SUPABASE_ANON_KEY
+   CODE_WORD — кодовое слово для входа на страницу.
+   Чтобы сменить его позже: откройте index.html на GitHub,
+   нажмите карандаш, поправьте строку, Commit changes.
+   ============================================================ */
+var CONFIG = {
+  SUPABASE_URL: "ВСТАВЬТЕ_PROJECT_URL",
+  SUPABASE_ANON_KEY: "ВСТАВЬТЕ_ANON_PUBLIC_KEY",
+  BUCKET: "wedding",
+  CODE_WORD: "15052027"
+};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var nf = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+  var DEFAULT_DATE = "2027-05-15";
+
+  var el = {
+    gate: document.getElementById("gate"),
+    gateForm: document.getElementById("gate-form"),
+    gateInput: document.getElementById("gate-input"),
+    gateError: document.getElementById("gate-error"),
+    page: document.getElementById("page"),
+    heroTitle: document.getElementById("hero-title"),
+    dateText: document.getElementById("date-text"),
+    dateToggle: document.getElementById("date-toggle"),
+    dateInput: document.getElementById("date-input"),
+    days: document.getElementById("days"),
+    daysWord: document.getElementById("days-word"),
+    spent: document.getElementById("spent"),
+    bar: document.getElementById("bar"),
+    progressNote: document.getElementById("progress-note"),
+    items: document.getElementById("items"),
+    listHint: document.getElementById("list-hint"),
+    toggleAll: document.getElementById("toggle-all"),
+    newItemForm: document.getElementById("new-item"),
+    newItemTitle: document.getElementById("new-item-title"),
+    dot: document.getElementById("dot"),
+    status: document.getElementById("status")
+  };
+
+  var sb = null, ready = false;
+  var state = {
+    meta: { title: "Наша свадьба", date: DEFAULT_DATE },
+    items: [],
+    options: [],
+    open: Object.create(null),
+    drafts: Object.create(null),
+    renames: Object.create(null),
+    renameTimers: Object.create(null),
+    editOpt: Object.create(null),
+    optDrafts: Object.create(null)
+  };
+
+  /* ——— мелкие помощники ——— */
+
+  function money(n) { return nf.format(Math.round(n)) + " ₽"; }
+
+  function plural(n, one, few, many) {
+    var a = n % 10, b = n % 100;
+    if (a === 1 && b !== 11) return one;
+    if (a >= 2 && a <= 4 && (b < 10 || b >= 20)) return few;
+    return many;
+  }
+
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+
+  function uid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "id" + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+
+  function setStatus(text, kind) {
+    el.status.textContent = text;
+    el.dot.className = "dot" + (kind ? " " + kind : "");
+  }
+
+  function parseNum(raw) {
+    var v = parseFloat(String(raw).replace(/[^\d.,-]/g, "").replace(/\s/g, "").replace(",", "."));
+    return isFinite(v) ? Math.abs(v) : NaN;
+  }
+
+  function safeUrl(raw) {
+    var s = String(raw || "").trim();
+    if (!s) return "";
+    if (!/^https?:\/\//i.test(s)) s = "https://" + s;
+    try { var u = new URL(s); return (u.protocol === "http:" || u.protocol === "https:") ? u.href : ""; }
+    catch (e) { return ""; }
+  }
+
+  function hostOf(href) {
+    try { return new URL(href).hostname.replace(/^www\./, ""); } catch (e) { return "ссылка"; }
+  }
+
+  function photoUrl(path) {
+    if (!path) return "";
+    return CONFIG.SUPABASE_URL.replace(/\/+$/, "") +
+           "/storage/v1/object/public/" + CONFIG.BUCKET + "/" + path;
+  }
+
+  function store(key, value) {
+    try {
+      if (value === undefined) return localStorage.getItem(key);
+      localStorage.setItem(key, value);
+    } catch (e) { /* приватное окно — просто работаем без памяти */ }
+    return null;
+  }
+
+  function fail(err, what) {
+    var msg = err && err.message ? err.message : String(err);
+    setStatus(what + ": " + msg, "off");
+  }
+
+  /* ——— вход по кодовому слову ——— */
+
+  function openPage() {
+    el.gate.hidden = true;
+    el.page.hidden = false;
+    start();
+  }
+
+  function initGate() {
+    var word = String(CONFIG.CODE_WORD || "").trim().toLowerCase();
+    if (!word) { openPage(); return; }
+    if (store("svadba:key") === word) { openPage(); return; }
+
+    el.gate.hidden = false;
+    el.gateInput.focus();
+    el.gateForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (el.gateInput.value.trim().toLowerCase() === word) {
+        store("svadba:key", word);
+        openPage();
+      } else {
+        el.gateError.textContent = "Не то слово. Попробуйте ещё раз.";
+        el.gateInput.select();
+      }
+    });
+  }
+
+  /* ——— дата и обратный отсчёт ——— */
+
+  function renderDate() {
+    var iso = state.meta.date || DEFAULT_DATE;
+    var parts = iso.split("-");
+    el.dateText.textContent = parts.length === 3 ? parts[2] + "." + parts[1] + "." + parts[0] : iso;
+    if (document.activeElement !== el.dateInput) el.dateInput.value = iso;
+
+    var target = new Date(parts[0], Number(parts[1]) - 1, parts[2]);
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var diff = Math.round((target - today) / 86400000);
+
+    if (diff > 0) {
+      el.days.textContent = nf.format(diff);
+      el.daysWord.textContent = plural(diff, "день остался", "дня осталось", "дней осталось");
+    } else if (diff === 0) {
+      el.days.textContent = "🤍";
+      el.daysWord.textContent = "сегодня свадьба";
+    } else {
+      el.days.textContent = nf.format(-diff);
+      el.daysWord.textContent = plural(-diff, "день вместе", "дня вместе", "дней вместе");
+    }
+  }
+
+  el.dateToggle.addEventListener("click", function () {
+    el.dateInput.hidden = !el.dateInput.hidden;
+    if (!el.dateInput.hidden) el.dateInput.focus();
+  });
+  el.dateInput.addEventListener("change", function () {
+    if (!el.dateInput.value) return;
+    state.meta.date = el.dateInput.value;
+    renderDate();
+    saveMeta();
+  });
+
+  var metaTimer = null;
+  function saveMeta() {
+    if (!ready) return;
+    clearTimeout(metaTimer);
+    metaTimer = setTimeout(function () {
+      sb.from("wedding_meta").upsert({
+        id: "wedding",
+        title: el.heroTitle.value.trim() || "Наша свадьба",
+        wedding_date: state.meta.date || DEFAULT_DATE
+      }).then(function (res) { if (res.error) fail(res.error, "Не удалось сохранить"); });
+    }, 500);
+  }
+  el.heroTitle.addEventListener("input", saveMeta);
+
+  /* ——— подсчёты ——— */
+
+  function optionsOf(itemId) {
+    var out = [];
+    for (var i = 0; i < state.options.length; i++) {
+      if (state.options[i].itemId === itemId) out.push(state.options[i]);
+    }
+    return out;
+  }
+
+  function childrenOf(itemId) {
+    var out = [];
+    for (var i = 0; i < state.items.length; i++) {
+      if (state.items[i].parentId === itemId) out.push(state.items[i]);
+    }
+    return out;
+  }
+
+  /* Пункт «оплачен», когда куплен хотя бы один его вариант
+     и закрыты все его подпункты. */
+  function isDone(item) {
+    var opts = optionsOf(item.id);
+    var kids = childrenOf(item.id);
+    if (!opts.length && !kids.length) return false;
+    if (opts.length) {
+      var own = false;
+      for (var i = 0; i < opts.length; i++) if (opts[i].paid) own = true;
+      if (!own) return false;
+    }
+    for (var j = 0; j < kids.length; j++) if (!isDone(kids[j])) return false;
+    return true;
+  }
+
+  /* Потрачено по пункту вместе с подпунктами. */
+  function paidSumOf(item) {
+    var opts = optionsOf(item.id), sum = 0;
+    for (var i = 0; i < opts.length; i++) if (opts[i].paid) sum += opts[i].price || 0;
+    var kids = childrenOf(item.id);
+    for (var j = 0; j < kids.length; j++) sum += paidSumOf(kids[j]);
+    return sum;
+  }
+
+  function renderTotals() {
+    var spent = 0, done = 0;
+    for (var i = 0; i < state.options.length; i++) {
+      if (state.options[i].paid) spent += state.options[i].price || 0;
+    }
+    for (var j = 0; j < state.items.length; j++) if (isDone(state.items[j])) done++;
+
+    el.spent.textContent = money(spent);
+    var share = state.items.length ? done / state.items.length : 0;
+    el.bar.style.width = (share * 100).toFixed(1) + "%";
+
+    el.progressNote.textContent = "";
+    el.progressNote.appendChild(document.createTextNode("Закрыто "));
+    var b = document.createElement("b");
+    b.textContent = String(done);
+    el.progressNote.appendChild(b);
+    el.progressNote.appendChild(document.createTextNode(
+      " из " + state.items.length + " " + plural(state.items.length, "пункта", "пунктов", "пунктов")));
+  }
+
+  /* ——— отрисовка списка ——— */
+
+  function render() {
+    var focusId = document.activeElement && document.activeElement.id;
+    var caret = null;
+    if (focusId && document.activeElement.selectionStart != null) caret = document.activeElement.selectionStart;
+
+    el.items.textContent = "";
+    var tops = [];
+    for (var i = 0; i < state.items.length; i++) if (!state.items[i].parentId) tops.push(state.items[i]);
+    for (var k = 0; k < tops.length; k++) el.items.appendChild(itemNode(tops[k], false, k + 1));
+    el.listHint.hidden = state.items.length > 0;
+
+    renderTotals();
+
+    if (focusId) {
+      var back = document.getElementById(focusId);
+      if (back && back !== document.activeElement) {
+        back.focus();
+        if (caret != null && back.setSelectionRange) { try { back.setSelectionRange(caret, caret); } catch (e) {} }
+      }
+    }
+  }
+
+  function itemNode(item, isSub, index) {
+    var opts = optionsOf(item.id);
+    var kids = childrenOf(item.id);
+    var paidSum = paidSumOf(item);
+    var done = isDone(item);
+
+    var wrap = document.createElement("div");
+    wrap.className = "item" + (isSub ? " sub" : "") + (done ? " done" : "") + (state.open[item.id] ? " open" : "");
+
+    var head = document.createElement("button");
+    head.type = "button";
+    head.className = "item-head";
+    head.setAttribute("aria-expanded", state.open[item.id] ? "true" : "false");
+
+    var num = document.createElement("span");
+    num.className = "num";
+    num.textContent = isSub ? "•" : pad(index);
+    head.appendChild(num);
+
+    var name = document.createElement("span");
+    name.className = "item-name";
+    name.textContent = item.title;
+    head.appendChild(name);
+
+    var meta = document.createElement("span");
+    meta.className = "item-meta";
+
+    var chip = document.createElement("span");
+    chip.className = "chip" + (done ? " paid" : "");
+    chip.textContent = done ? "оплачено" : "в планах";
+    meta.appendChild(chip);
+
+    var sum = document.createElement("span");
+    sum.className = "item-sum" + (paidSum ? "" : " zero");
+    sum.textContent = paidSum ? money(paidSum)
+      : (opts.length ? opts.length + " " + plural(opts.length, "вариант", "варианта", "вариантов")
+        : (kids.length ? kids.length + " " + plural(kids.length, "подпункт", "подпункта", "подпунктов") : "—"));
+    meta.appendChild(sum);
+
+    head.appendChild(meta);
+    head.addEventListener("click", function () {
+      state.open[item.id] = !state.open[item.id];
+      render();
+    });
+    wrap.appendChild(head);
+
+    if (state.open[item.id]) wrap.appendChild(panelNode(item, opts, kids, isSub));
+    return wrap;
+  }
+
+  function panelNode(item, opts, kids, isSub) {
+    var panel = document.createElement("div");
+    panel.className = "panel";
+
+    panel.appendChild(renameRow(item, isSub));
+
+    if (opts.length) {
+      var grid = document.createElement("div");
+      grid.className = "options";
+      for (var i = 0; i < opts.length; i++) grid.appendChild(optionNode(opts[i]));
+      panel.appendChild(grid);
+    } else {
+      var hint = document.createElement("p");
+      hint.className = "hint";
+      hint.textContent = "Вариантов пока нет. Добавьте первый — фото, ссылку и цену.";
+      panel.appendChild(hint);
+    }
+
+    panel.appendChild(addFormNode(item));
+
+    if (kids.length) {
+      var subs = document.createElement("div");
+      subs.className = "subs";
+      var label = document.createElement("div");
+      label.className = "subs-label";
+      label.textContent = "Подпункты";
+      subs.appendChild(label);
+      for (var k = 0; k < kids.length; k++) subs.appendChild(itemNode(kids[k], true, k + 1));
+      panel.appendChild(subs);
+    }
+
+    var foot = document.createElement("div");
+    foot.style.display = "flex";
+    foot.style.flexWrap = "wrap";
+    foot.style.gap = "10px";
+    foot.style.alignItems = "center";
+    foot.style.justifyContent = "space-between";
+    if (!isSub) foot.appendChild(addSubFormNode(item));
+    else foot.appendChild(document.createElement("span"));
+    foot.appendChild(killButton(isSub ? "удалить подпункт" : "удалить пункт",
+      "Удалить пункт со всеми вариантами", function () { return deleteItem(item); }));
+    panel.appendChild(foot);
+
+    return panel;
+  }
+
+  /* Название пункта правится прямо в раскрытом блоке. */
+  function renameRow(item, isSub) {
+    var row = document.createElement("label");
+    row.className = "rename-row";
+    row.setAttribute("for", "name-" + item.id);
+
+    var span = document.createElement("span");
+    span.textContent = isSub ? "Название подпункта" : "Название пункта";
+    row.appendChild(span);
+
+    var input = document.createElement("input");
+    input.className = "box";
+    input.id = "name-" + item.id;
+    input.maxLength = 60;
+    input.value = state.renames[item.id] != null ? state.renames[item.id] : item.title;
+    input.addEventListener("input", function () {
+      state.renames[item.id] = input.value;
+      clearTimeout(state.renameTimers[item.id]);
+      state.renameTimers[item.id] = setTimeout(function () {
+        var title = input.value.trim();
+        if (!title) return;
+        sb.from("wedding_items").update({ title: title }).eq("id", item.id)
+          .then(function (res) {
+            if (res.error) fail(res.error, "Не удалось переименовать");
+            else reload();
+          });
+      }, 600);
+    });
+    row.appendChild(input);
+    return row;
+  }
+
+  function addSubFormNode(item) {
+    var form = document.createElement("form");
+    form.className = "new-item";
+    form.style.margin = "0";
+    form.autocomplete = "off";
+    var input = document.createElement("input");
+    input.className = "box";
+    input.id = "sub-title-" + item.id;
+    input.placeholder = "Подпункт, например: туфли";
+    input.maxLength = 60;
+    input.setAttribute("aria-label", "Название подпункта");
+    input.style.flex = "1 1 180px";
+    var draft = draftFor("sub:" + item.id);
+    input.value = draft.title;
+    input.addEventListener("input", function () { draft.title = input.value; });
+    var btn = document.createElement("button");
+    btn.type = "submit";
+    btn.className = "ghost";
+    btn.textContent = "+ подпункт";
+    form.appendChild(input);
+    form.appendChild(btn);
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var title = input.value.trim();
+      if (!title) { input.focus(); return; }
+      btn.disabled = true;
+      addItem(title, item.id).then(function () {
+        draft.title = "";
+        input.value = "";
+        state.open[item.id] = true;
+      }).catch(function (err) {
+        fail(err, "Не удалось добавить подпункт");
+      }).then(function () { btn.disabled = false; });
+    });
+    return form;
+  }
+
+  /* ——— запись в базу ——— */
+
+  function addItem(title, parentId) {
+    return sb.from("wedding_items").insert({
+      id: uid(),
+      title: title,
+      parent_id: parentId || "",
+      position: Date.now()
+    }).then(function (res) {
+      if (res.error) throw res.error;
+      setStatus("Пункт добавлен.", "live");
+      return reload();
+    });
+  }
+
+  function deleteItem(item) {
+    var ids = [item.id];
+    (function collect(id) {
+      childrenOf(id).forEach(function (kid) { ids.push(kid.id); collect(kid.id); });
+    })(item.id);
+
+    return sb.from("wedding_options").delete().in("item_id", ids)
+      .then(function (res) {
+        if (res.error) throw res.error;
+        return sb.from("wedding_items").delete().in("id", ids);
+      })
+      .then(function (res) {
+        if (res.error) throw res.error;
+        return reload();
+      });
+  }
+
+  function uploadPhoto(file) {
+    var name = String(file.name || "photo.jpg");
+    var ext = (name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
+    var path = "photos/" + uid() + "." + ext;
+    return sb.storage.from(CONFIG.BUCKET).upload(path, file, { cacheControl: "3600", upsert: false })
+      .then(function (res) {
+        if (res.error) throw res.error;
+        return path;
+      });
+  }
+
+  /* ——— варианты ——— */
+
+  function optionNode(o) {
+    if (state.editOpt[o.id]) return optionEditNode(o);
+
+    var card = document.createElement("div");
+    card.className = "option" + (o.paid ? " bought" : "");
+
+    var shot = document.createElement("div");
+    shot.className = "shot";
+    if (o.imagePath) {
+      var img = document.createElement("img");
+      img.src = photoUrl(o.imagePath);
+      img.alt = o.title || "Вариант";
+      img.loading = "lazy";
+      shot.appendChild(img);
+    } else {
+      var ph = document.createElement("span");
+      ph.className = "no-photo";
+      ph.textContent = "без фото";
+      shot.appendChild(ph);
+    }
+    if (o.paid) {
+      var badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = "куплено";
+      shot.appendChild(badge);
+    }
+    card.appendChild(shot);
+
+    var nm = document.createElement("div");
+    nm.className = "name";
+    nm.textContent = o.title || "Вариант";
+    card.appendChild(nm);
+
+    var pr = document.createElement("div");
+    pr.className = "price" + (o.price ? "" : " none");
+    pr.textContent = o.price ? money(o.price) : "цена не указана";
+    card.appendChild(pr);
+
+    if (o.url) {
+      var a = document.createElement("a");
+      a.className = "shop";
+      a.href = o.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = hostOf(o.url);
+      card.appendChild(a);
+    }
+
+    var acts = document.createElement("div");
+    acts.className = "acts";
+
+    var mark = document.createElement("button");
+    mark.type = "button";
+    mark.className = "mark";
+    var tick = document.createElement("span");
+    tick.className = "tick";
+    tick.textContent = "✓";
+    mark.appendChild(tick);
+    var mlabel = document.createElement("span");
+    mlabel.textContent = o.paid ? "куплено" : "отметить";
+    mark.appendChild(mlabel);
+    mark.addEventListener("click", function () {
+      mark.disabled = true;
+      sb.from("wedding_options").update({ paid: !o.paid }).eq("id", o.id)
+        .then(function (res) {
+          if (res.error) fail(res.error, "Не удалось обновить");
+          else reload();
+        }).then(function () { mark.disabled = false; });
+    });
+    acts.appendChild(mark);
+
+    var tools = document.createElement("div");
+    tools.className = "card-tools";
+
+    var edit = document.createElement("button");
+    edit.type = "button";
+    edit.className = "kill";
+    edit.textContent = "✎";
+    edit.title = "Изменить вариант";
+    edit.setAttribute("aria-label", "Изменить вариант");
+    edit.addEventListener("click", function () {
+      state.editOpt[o.id] = true;
+      state.optDrafts[o.id] = {
+        title: o.title,
+        url: o.url,
+        price: o.price ? String(o.price) : "",
+        file: null
+      };
+      render();
+    });
+    tools.appendChild(edit);
+
+    tools.appendChild(killButton("×", "Удалить вариант", function () {
+      return sb.from("wedding_options").delete().eq("id", o.id).then(function (res) {
+        if (res.error) throw res.error;
+        return reload();
+      });
+    }));
+    acts.appendChild(tools);
+
+    card.appendChild(acts);
+    return card;
+  }
+
+  /* Карточка варианта в режиме правки. */
+  function optionEditNode(o) {
+    var d = state.optDrafts[o.id] || (state.optDrafts[o.id] = {
+      title: o.title, url: o.url, price: o.price ? String(o.price) : "", file: null
+    });
+
+    var card = document.createElement("div");
+    card.className = "option editing";
+
+    var shot = document.createElement("div");
+    shot.className = "shot";
+    if (o.imagePath) {
+      var img = document.createElement("img");
+      img.src = photoUrl(o.imagePath);
+      img.alt = o.title || "Вариант";
+      shot.appendChild(img);
+    } else {
+      var ph = document.createElement("span");
+      ph.className = "no-photo";
+      ph.textContent = "без фото";
+      shot.appendChild(ph);
+    }
+    card.appendChild(shot);
+
+    var swap = document.createElement("div");
+    swap.className = "photo-pick";
+    swap.style.paddingInline = "4px";
+    var fileId = "eopt-file-" + o.id;
+    var lab = document.createElement("label");
+    lab.setAttribute("for", fileId);
+    lab.textContent = o.imagePath ? "Заменить фото" : "Добавить фото";
+    var file = document.createElement("input");
+    file.type = "file";
+    file.id = fileId;
+    file.accept = "image/*";
+    var fname = document.createElement("span");
+    fname.className = "fname";
+    fname.textContent = d.file ? d.file.name : "";
+    file.addEventListener("change", function () {
+      d.file = file.files && file.files[0] ? file.files[0] : null;
+      fname.textContent = d.file ? d.file.name : "";
+    });
+    swap.appendChild(lab);
+    swap.appendChild(file);
+    swap.appendChild(fname);
+    card.appendChild(swap);
+
+    var fields = document.createElement("div");
+    fields.className = "edit-fields";
+    fields.appendChild(plainInput("eopt-title-" + o.id, "Название", d.title, function (v) { d.title = v; }));
+    fields.appendChild(plainInput("eopt-url-" + o.id, "Ссылка на магазин", d.url, function (v) { d.url = v; }));
+    fields.appendChild(plainInput("eopt-price-" + o.id, "Цена, ₽", d.price, function (v) { d.price = v; }));
+    card.appendChild(fields);
+
+    var acts = document.createElement("div");
+    acts.className = "edit-acts";
+
+    var save = document.createElement("button");
+    save.type = "button";
+    save.className = "mini save";
+    save.textContent = "Сохранить";
+    save.addEventListener("click", function () {
+      var price = parseNum(d.price);
+      var patch = {
+        title: d.title.trim(),
+        url: safeUrl(d.url),
+        price: isFinite(price) ? price : 0
+      };
+      save.disabled = true;
+      var step = Promise.resolve();
+      if (d.file) {
+        save.textContent = "загружаем фото…";
+        step = uploadPhoto(d.file).then(function (path) { patch.image_path = path; });
+      }
+      step.then(function () {
+        return sb.from("wedding_options").update(patch).eq("id", o.id);
+      }).then(function (res) {
+        if (res.error) throw res.error;
+        delete state.editOpt[o.id];
+        delete state.optDrafts[o.id];
+        setStatus("Вариант изменён.", "live");
+        return reload();
+      }).catch(function (err) {
+        fail(err, "Не удалось сохранить");
+      }).then(function () {
+        save.disabled = false;
+        save.textContent = "Сохранить";
+      });
+    });
+    acts.appendChild(save);
+
+    var cancel = document.createElement("button");
+    cancel.type = "button";
+    cancel.className = "mini";
+    cancel.textContent = "Отмена";
+    cancel.addEventListener("click", function () {
+      delete state.editOpt[o.id];
+      delete state.optDrafts[o.id];
+      render();
+    });
+    acts.appendChild(cancel);
+    card.appendChild(acts);
+
+    return card;
+  }
+
+  function plainInput(id, placeholder, value, onInput) {
+    var input = document.createElement("input");
+    input.className = "box";
+    input.id = id;
+    input.placeholder = placeholder;
+    input.setAttribute("aria-label", placeholder);
+    input.value = value || "";
+    input.addEventListener("input", function () { onInput(input.value); });
+    return input;
+  }
+
+  function killButton(label, title, action) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "kill";
+    btn.textContent = label;
+    btn.title = title;
+    btn.setAttribute("aria-label", title);
+    var armed = false, timer = null;
+    btn.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      if (!armed) {
+        armed = true;
+        btn.textContent = "удалить?";
+        btn.classList.add("armed");
+        timer = setTimeout(function () {
+          armed = false;
+          btn.textContent = label;
+          btn.classList.remove("armed");
+        }, 4000);
+        return;
+      }
+      clearTimeout(timer);
+      btn.disabled = true;
+      action().catch(function (err) {
+        btn.disabled = false;
+        fail(err, "Не удалось удалить");
+      });
+    });
+    return btn;
+  }
+
+  function draftFor(id) {
+    if (!state.drafts[id]) state.drafts[id] = { title: "", url: "", price: "", file: null };
+    return state.drafts[id];
+  }
+
+  function addFormNode(item) {
+    var d = draftFor(item.id);
+
+    var form = document.createElement("form");
+    form.className = "add-option";
+    form.autocomplete = "off";
+
+    var grid = document.createElement("div");
+    grid.className = "add-grid";
+    grid.appendChild(fieldNode("Название", "opt-title-" + item.id, "Например: платье «Мила»", d.title, function (v) { d.title = v; }));
+    grid.appendChild(fieldNode("Ссылка", "opt-url-" + item.id, "ссылка на магазин", d.url, function (v) { d.url = v; }));
+    grid.appendChild(fieldNode("Цена, ₽", "opt-price-" + item.id, "68000", d.price, function (v) { d.price = v; }));
+    form.appendChild(grid);
+
+    var foot = document.createElement("div");
+    foot.className = "add-foot";
+
+    var pick = document.createElement("div");
+    pick.className = "photo-pick";
+    var fileId = "opt-file-" + item.id;
+    var lab = document.createElement("label");
+    lab.setAttribute("for", fileId);
+    lab.textContent = "Фото";
+    var file = document.createElement("input");
+    file.type = "file";
+    file.id = fileId;
+    file.accept = "image/*";
+    var fname = document.createElement("span");
+    fname.className = "fname";
+    fname.textContent = d.file ? d.file.name : "необязательно";
+    file.addEventListener("change", function () {
+      d.file = file.files && file.files[0] ? file.files[0] : null;
+      fname.textContent = d.file ? d.file.name : "необязательно";
+    });
+    pick.appendChild(lab);
+    pick.appendChild(file);
+    pick.appendChild(fname);
+    foot.appendChild(pick);
+
+    var submit = document.createElement("button");
+    submit.type = "submit";
+    submit.className = "primary";
+    submit.textContent = "+ вариант";
+    foot.appendChild(submit);
+    form.appendChild(foot);
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var price = parseNum(d.price);
+      var row = {
+        id: uid(),
+        item_id: item.id,
+        title: d.title.trim(),
+        url: safeUrl(d.url),
+        price: isFinite(price) ? price : 0,
+        paid: false
+      };
+      if (!row.title && !row.url && !row.price && !d.file) {
+        setStatus("Заполните хотя бы название или цену варианта.", "off");
+        return;
+      }
+      submit.disabled = true;
+      var step = Promise.resolve();
+      if (d.file) {
+        submit.textContent = "загружаем фото…";
+        step = uploadPhoto(d.file).then(function (path) { row.image_path = path; });
+      }
+      step.then(function () {
+        return sb.from("wedding_options").insert(row);
+      }).then(function (res) {
+        if (res.error) throw res.error;
+        state.drafts[item.id] = { title: "", url: "", price: "", file: null };
+        setStatus("Вариант добавлен.", "live");
+        return reload();
+      }).catch(function (err) {
+        fail(err, "Не удалось добавить вариант");
+      }).then(function () {
+        submit.disabled = false;
+        submit.textContent = "+ вариант";
+      });
+    });
+
+    return form;
+  }
+
+  function fieldNode(label, id, placeholder, value, onInput) {
+    var wrap = document.createElement("label");
+    wrap.className = "field";
+    wrap.setAttribute("for", id);
+    var span = document.createElement("span");
+    span.textContent = label;
+    var input = document.createElement("input");
+    input.className = "box";
+    input.id = id;
+    input.placeholder = placeholder;
+    input.value = value || "";
+    input.addEventListener("input", function () { onInput(input.value); });
+    wrap.appendChild(span);
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  /* ——— пункты списка ——— */
+
+  el.newItemForm.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var title = el.newItemTitle.value.trim();
+    if (!title) { el.newItemTitle.focus(); return; }
+    if (!ready) { setStatus("База не настроена — пункт не сохранится.", "off"); return; }
+    addItem(title, "").then(function () {
+      el.newItemTitle.value = "";
+    }).catch(function (err) { fail(err, "Не удалось добавить пункт"); });
+  });
+
+  el.toggleAll.addEventListener("click", function () {
+    var anyClosed = false;
+    for (var i = 0; i < state.items.length; i++) if (!state.open[state.items[i].id]) anyClosed = true;
+    for (var j = 0; j < state.items.length; j++) state.open[state.items[j].id] = anyClosed;
+    el.toggleAll.textContent = anyClosed ? "свернуть всё" : "развернуть всё";
+    render();
+  });
+
+  /* ——— загрузка данных ——— */
+
+  var reloadTimer = null;
+  function reload() {
+    clearTimeout(reloadTimer);
+    return new Promise(function (resolve) {
+      reloadTimer = setTimeout(function () { loadAll().then(resolve); }, 120);
+    });
+  }
+
+  function loadAll() {
+    if (!ready) return Promise.resolve();
+    return Promise.all([
+      sb.from("wedding_meta").select("*").eq("id", "wedding").maybeSingle(),
+      sb.from("wedding_items").select("*").order("position", { ascending: true }),
+      sb.from("wedding_options").select("*").order("created_at", { ascending: true })
+    ]).then(function (res) {
+      var metaRes = res[0], itemsRes = res[1], optsRes = res[2];
+      var err = metaRes.error || itemsRes.error || optsRes.error;
+      if (err) { fail(err, "Не удалось загрузить данные"); return; }
+
+      if (metaRes.data) {
+        state.meta.title = metaRes.data.title || "Наша свадьба";
+        state.meta.date = metaRes.data.wedding_date || DEFAULT_DATE;
+        if (document.activeElement !== el.heroTitle) el.heroTitle.value = state.meta.title;
+      }
+
+      var items = [];
+      (itemsRes.data || []).forEach(function (r) {
+        items.push({
+          id: r.id,
+          title: r.title || "Без названия",
+          parentId: r.parent_id || "",
+          order: r.position || 0
+        });
+        var draft = state.renames[r.id];
+        if (draft != null && draft.trim() === r.title) delete state.renames[r.id];
+      });
+      state.items = items;
+
+      var opts = [];
+      (optsRes.data || []).forEach(function (r) {
+        opts.push({
+          id: r.id,
+          itemId: r.item_id,
+          title: r.title || "",
+          url: r.url || "",
+          price: typeof r.price === "number" ? r.price : Number(r.price) || 0,
+          paid: r.paid === true,
+          imagePath: r.image_path || ""
+        });
+      });
+      state.options = opts;
+
+      renderDate();
+      render();
+      setStatus("Синхронизировано — правки видит каждый, у кого есть ссылка.", "live");
+    });
+  }
+
+  function subscribeLive() {
+    var channel = sb.channel("wedding-live");
+    ["wedding_meta", "wedding_items", "wedding_options"].forEach(function (table) {
+      channel.on("postgres_changes", { event: "*", schema: "public", table: table }, function () {
+        loadAll();
+      });
+    });
+    channel.subscribe();
+    /* Подстраховка, если живой канал не включён в проекте. */
+    setInterval(loadAll, 30000);
+  }
+
+  /* ——— запуск ——— */
+
+  function start() {
+    renderDate();
+    render();
+    setInterval(renderDate, 3600000);
+
+    if (!window.supabase || !window.supabase.createClient) {
+      setStatus("Не загрузилась библиотека базы. Проверьте интернет и обновите страницу.", "off");
+      return;
+    }
+    if (CONFIG.SUPABASE_URL.indexOf("http") !== 0 || CONFIG.SUPABASE_ANON_KEY.length < 20) {
+      setStatus("Страница ещё не подключена к базе: впишите Project URL и anon key в начало файла.", "off");
+      return;
+    }
+
+    sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    ready = true;
+    loadAll().then(subscribeLive);
+  }
+
+  initGate();
+})();
+</script>
+</body>
+</html>
