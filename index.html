@@ -807,7 +807,7 @@ var CONFIG = {
     status: document.getElementById("status")
   };
 
-  var sb = null, ready = false;
+  var sb = null, ready = false, localMode = false;
   var state = {
     meta: { title: "Наша свадьба", date: DEFAULT_DATE },
     items: [],
@@ -862,6 +862,8 @@ var CONFIG = {
 
   function photoUrl(path) {
     if (!path) return "";
+    /* В локальном режиме фото лежит прямо в строке варианта. */
+    if (path.indexOf("data:") === 0) return path;
     return CONFIG.SUPABASE_URL.replace(/\/+$/, "") +
            "/storage/v1/object/public/" + CONFIG.BUCKET + "/" + path;
   }
@@ -1246,7 +1248,8 @@ var CONFIG = {
     return sb.storage.from(CONFIG.BUCKET).upload(path, file, { cacheControl: "3600", upsert: false })
       .then(function (res) {
         if (res.error) throw res.error;
-        return path;
+        /* В локальном режиме вместо пути возвращается само уменьшенное фото. */
+        return localMode ? res.data.path : path;
       });
   }
 
@@ -1687,7 +1690,9 @@ var CONFIG = {
 
       renderDate();
       render();
-      setStatus("Синхронизировано — правки видит каждый, у кого есть ссылка.", "live");
+      setStatus(localMode
+        ? "Сохранено в этом браузере. У другого человека будут свои отметки."
+        : "Синхронизировано — правки видит каждый, у кого есть ссылка.", "live");
     });
   }
 
@@ -1703,6 +1708,245 @@ var CONFIG = {
     setInterval(loadAll, 30000);
   }
 
+  /* ——— локальная база ———
+     Пока в CONFIG не вписаны ключи Supabase, страница работает на памяти
+     браузера. Для остального кода ничего не меняется: те же вызовы
+     sb.from(...), только данные лежат в localStorage, а не на сервере. */
+
+  var STARTER_ITEMS = [
+    ["w1",  "Банкетный зал и еда на всех", "",    1],
+    ["w2",  "Алкоголь",                    "",    2],
+    ["w3",  "Торт",                        "",    3],
+    ["w4",  "Платье невесте",              "",    4],
+    ["w4a", "Туфли",                       "w4",  5],
+    ["w5",  "Костюм жениху",               "",    6],
+    ["w6",  "Фотограф",                    "",    7],
+    ["w7",  "Причёска и макияж в салоне",  "",    8],
+    ["w8",  "Кольца",                      "",    9],
+    ["w9",  "Букет невесты",               "",   10]
+  ];
+
+  /* Фото уменьшаем: длинная сторона до 1000 px, JPEG. Память браузера —
+     около 5 МБ на всю страницу, пара снимков с телефона съели бы её целиком. */
+  function shrinkImage(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file) { reject(new Error("файл не выбран")); return; }
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error("не удалось прочитать файл")); };
+      reader.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error("это не похоже на картинку")); };
+        img.onload = function () {
+          var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+          var k = Math.min(1, 1000 / Math.max(w, h));
+          var cw = Math.max(1, Math.round(w * k)), ch = Math.max(1, Math.round(h * k));
+          try {
+            var canvas = document.createElement("canvas");
+            canvas.width = cw;
+            canvas.height = ch;
+            canvas.getContext("2d").drawImage(img, 0, 0, cw, ch);
+            resolve(canvas.toDataURL("image/jpeg", 0.72));
+          } catch (e) {
+            resolve(String(reader.result));
+          }
+        };
+        img.src = String(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function createLocalClient() {
+    var KEY = "svadba:local:v1";
+
+    function fresh() {
+      var now = new Date().toISOString();
+      return {
+        meta: { id: "wedding", title: "Наша свадьба", wedding_date: DEFAULT_DATE },
+        items: STARTER_ITEMS.map(function (r) {
+          return { id: r[0], title: r[1], parent_id: r[2], position: r[3], created_at: now };
+        }),
+        options: []
+      };
+    }
+
+    function read() {
+      var raw = store(KEY);
+      if (raw) {
+        try {
+          var saved = JSON.parse(raw);
+          if (saved && saved.meta && saved.items && saved.options) return saved;
+        } catch (e) { /* испорченная запись — начинаем со стартового списка */ }
+      }
+      return fresh();
+    }
+
+    var db = read();
+
+    function write() {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(db));
+      } catch (e) {
+        throw new Error("не хватило места в памяти браузера — обычно из-за фотографий");
+      }
+    }
+
+    function rowsOf(table) {
+      if (table === "wedding_meta") return [db.meta];
+      if (table === "wedding_items") return db.items;
+      if (table === "wedding_options") return db.options;
+      throw new Error("неизвестная таблица " + table);
+    }
+
+    function copy(row) {
+      var out = {};
+      for (var k in row) if (Object.prototype.hasOwnProperty.call(row, k)) out[k] = row[k];
+      return out;
+    }
+
+    function fill(table, row) {
+      var out = copy(row);
+      if (!out.id) out.id = uid();
+      if (!out.created_at) out.created_at = new Date().toISOString();
+      if (table === "wedding_items") {
+        if (out.parent_id == null) out.parent_id = "";
+        if (out.position == null) out.position = Date.now();
+      }
+      if (table === "wedding_options") {
+        if (out.item_id == null) out.item_id = "";
+        if (out.title == null) out.title = "";
+        if (out.url == null) out.url = "";
+        if (out.price == null) out.price = 0;
+        if (out.paid == null) out.paid = false;
+        if (out.image_path == null) out.image_path = "";
+      }
+      return out;
+    }
+
+    function matches(row, filters) {
+      for (var i = 0; i < filters.length; i++) {
+        var f = filters[i];
+        if (f.kind === "eq" && row[f.col] !== f.value) return false;
+        if (f.kind === "in" && f.value.indexOf(row[f.col]) < 0) return false;
+      }
+      return true;
+    }
+
+    function run(table, q) {
+      var list = rowsOf(table);
+      var hit = [];
+      for (var i = 0; i < list.length; i++) if (matches(list[i], q.filters)) hit.push(list[i]);
+
+      if (q.op === "select") {
+        var data = hit.slice();
+        if (q.orderBy) {
+          var col = q.orderBy.col, up = q.orderBy.ascending ? 1 : -1;
+          data.sort(function (a, b) {
+            if (a[col] === b[col]) return 0;
+            return (a[col] > b[col] ? 1 : -1) * up;
+          });
+        }
+        return q.single ? (data[0] || null) : data;
+      }
+
+      if (q.op === "insert") {
+        var row = fill(table, q.row);
+        list.push(row);
+        write();
+        return [row];
+      }
+
+      if (q.op === "upsert") {
+        if (table === "wedding_meta") {
+          var incoming = q.row;
+          for (var m in incoming) {
+            if (Object.prototype.hasOwnProperty.call(incoming, m)) db.meta[m] = incoming[m];
+          }
+          write();
+          return [db.meta];
+        }
+        var found = null;
+        for (var j = 0; j < list.length; j++) if (list[j].id === q.row.id) found = list[j];
+        if (found) {
+          for (var u in q.row) {
+            if (Object.prototype.hasOwnProperty.call(q.row, u)) found[u] = q.row[u];
+          }
+        } else {
+          found = fill(table, q.row);
+          list.push(found);
+        }
+        write();
+        return [found];
+      }
+
+      if (q.op === "update") {
+        for (var h = 0; h < hit.length; h++) {
+          for (var p in q.patch) {
+            if (Object.prototype.hasOwnProperty.call(q.patch, p)) hit[h][p] = q.patch[p];
+          }
+        }
+        write();
+        return hit;
+      }
+
+      if (q.op === "delete") {
+        for (var d = list.length - 1; d >= 0; d--) {
+          if (hit.indexOf(list[d]) >= 0) list.splice(d, 1);
+        }
+        write();
+        return hit;
+      }
+
+      throw new Error("неизвестная операция");
+    }
+
+    function query(table) {
+      var q = { op: "select", filters: [], row: null, patch: null, orderBy: null, single: false };
+      var api = {
+        select:      function ()           { q.op = "select"; return api; },
+        insert:      function (row)        { q.op = "insert"; q.row = row; return api; },
+        update:      function (patch)      { q.op = "update"; q.patch = patch; return api; },
+        upsert:      function (row)        { q.op = "upsert"; q.row = row; return api; },
+        delete:      function ()           { q.op = "delete"; return api; },
+        eq:          function (col, value) { q.filters.push({ kind: "eq", col: col, value: value }); return api; },
+        in:          function (col, values){ q.filters.push({ kind: "in", col: col, value: values || [] }); return api; },
+        order:       function (col, opts)  { q.orderBy = { col: col, ascending: !opts || opts.ascending !== false }; return api; },
+        maybeSingle: function ()           { q.single = true; return api; },
+        then: function (onDone, onFail) {
+          var result;
+          try {
+            result = { data: run(table, q), error: null };
+          } catch (e) {
+            result = { data: null, error: { message: e && e.message ? e.message : String(e) } };
+          }
+          return Promise.resolve(result).then(onDone, onFail);
+        }
+      };
+      return api;
+    }
+
+    return {
+      from: query,
+      storage: {
+        from: function () {
+          return {
+            upload: function (path, file) {
+              return shrinkImage(file).then(function (dataUrl) {
+                return { data: { path: dataUrl }, error: null };
+              }, function (err) {
+                return { data: null, error: { message: err && err.message ? err.message : "не удалось прочитать файл" } };
+              });
+            }
+          };
+        }
+      },
+      channel: function () {
+        var live = { on: function () { return live; }, subscribe: function () { return live; } };
+        return live;
+      }
+    };
+  }
+
   /* ——— запуск ——— */
 
   function start() {
@@ -1710,12 +1954,19 @@ var CONFIG = {
     render();
     setInterval(renderDate, 3600000);
 
-    if (!window.supabase || !window.supabase.createClient) {
-      setStatus("Не загрузилась библиотека базы. Проверьте интернет и обновите страницу.", "off");
+    var configured = CONFIG.SUPABASE_URL.indexOf("http") === 0 && CONFIG.SUPABASE_ANON_KEY.length >= 20;
+
+    /* Ключи не вписаны — работаем на памяти браузера. */
+    if (!configured) {
+      localMode = true;
+      sb = createLocalClient();
+      ready = true;
+      loadAll();
       return;
     }
-    if (CONFIG.SUPABASE_URL.indexOf("http") !== 0 || CONFIG.SUPABASE_ANON_KEY.length < 20) {
-      setStatus("Страница ещё не подключена к базе: впишите Project URL и anon key в начало файла.", "off");
+
+    if (!window.supabase || !window.supabase.createClient) {
+      setStatus("Не загрузилась библиотека базы. Проверьте интернет и обновите страницу.", "off");
       return;
     }
 
